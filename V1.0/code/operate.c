@@ -31,7 +31,7 @@ void writeFile_1(char * filename) {
 	char *writeText = "Linux teacher is a handsome man\n";
 
 	if(strlen(filename) == 0) {
-		printf("请先创建新文件，再执行操作！\n");
+		printf("请先创建新文件/录入已有文件，再执行操作！\n");
 		return;
 	}
 
@@ -56,7 +56,7 @@ void readFile_1(char * filename) {
 	char buff[1024];
 
 	if(strlen(filename) == 0) {
-		printf("请先创建新文件，再执行操作！\n");
+		printf("请先创建新文件/录入已有文件，再执行操作！\n");
 		return;
 	}
 
@@ -78,7 +78,10 @@ void readFile_1(char * filename) {
 
 void changeMode_1(char * filename) {
 	int mode;
-
+	if(strlen(filename) == 0) {
+		printf("请先创建新文件/录入已有文件，再执行操作！\n");
+		return;
+	}
 	printf("请输入文件权限的权限掩码(000～777)：");
 	scanf("%o",&mode);
 	chmod(filename,mode);
@@ -94,6 +97,12 @@ void lookMode_1(char * filename) {
 	system(str);
 */
 	struct stat fileInfo;
+
+	if(strlen(filename) == 0) {
+		printf("请先创建新文件/录入已有文件，再执行操作！\n");
+		return;
+	}
+
 	if(stat(filename, &fileInfo) < 0) {
 		printf("查看失败！\n");
 	}
